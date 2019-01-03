@@ -6,7 +6,7 @@ class MusicLibraryController
   end
   
  def call
-    input = ""
+    input = " "
 
     while input != "exit"
       puts "Welcome to your music library!"
@@ -18,40 +18,40 @@ class MusicLibraryController
       puts "To play a song, enter 'play song'."
       puts "To quit, type 'exit'."
       puts "What would you like to do?"
-
       input = gets.strip
-
-      case input
-      when "list songs"
+      if input =="list songs"
         list_songs
-      when "list artists"
+      elsif input =="list artists"
         list_artists
-      when "list genres"
+      elsif input =="list genres"
         list_genres
-      when "list artist"
+      elsif input =="list artist"
         list_songs_by_artist
-      when "list genre"
+      elsif input =="list genre"
         list_songs_by_genre
-      when "play song"
+      elsif input =="play song"
         play_song
-      end
+    end
     end
   end
 
   def list_songs
-    Song.all.sort{ |a, b| a.name <=> b.name }.each.with_index(1) do |s, i|
+    library = Song.all.sort{ |a, b| a.name <=> b.name }
+    library.each_with_index(1) do |s, i|
       puts "#{i}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
     end
   end
 
   def list_artists
-    Artist.all.sort{ |a, b| a.name <=> b.name }.each.with_index(1) do |a, i|
+    library = Artist.all.sort{ |a, b| a.name <=> b.name }
+    library.each_with_index(1) do |a, i|
       puts "#{i}. #{a.name}"
     end
   end
 
   def list_genres
-    Genre.all.sort{ |a, b| a.name <=> b.name }.each.with_index(1) do |g, i|
+    library = Genre.all.sort{ |a, b| a.name <=> b.name }
+    library.each.with_index(1) do |g, i|
       puts "#{i}. #{g.name}"
     end
   end
