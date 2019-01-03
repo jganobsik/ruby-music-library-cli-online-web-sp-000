@@ -36,24 +36,31 @@ class MusicLibraryController
   end
 
   def list_songs
-    library = Song.all.sort{ |a, b| a.name <=> b.name }
+    library = Song.all.sort{|a, b| a.name <=> b.name}
     library.each_with_index do |song, number|
       puts "#{number + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
   end
 
   def list_artists
-    library = Artist.all.sort{ |a, b| a.name <=> b.name }
+    library = Artist.all.sort{|a, b| a.name <=> b.name}
     library.each_with_index do |artist, number|
       puts "#{number + 1}. #{artist.name}"
     end
   end
 
   def list_genres
-    library = Genre.all.sort{ |a, b| a.name <=> b.name }
+    library = Genre.all.sort{|a, b| a.name <=> b.name}
     library.each_with_index do |genre, number|
       puts "#{number + 1}. #{genre.name}"
     end
   end
+
+def list_songs_by_artist
+  puts "enter artist name"
+  input = gets.strip
+  library = artist.songs.sort{|a, b| a.name <=> b.name}
+  
+  
 
 end
